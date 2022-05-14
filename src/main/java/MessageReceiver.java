@@ -7,7 +7,7 @@ public class MessageReceiver extends ConnectionHandler {
         try {
             message = (TextMessage) messageConsumer.receive(1000);
         } catch (JMSException e) {
-            System.out.println("Exceeded waiting time.");
+            System.out.println("Exceeded waiting time.\n" + e.getMessage());
             if (onException()) receive();
             else return;
         }
