@@ -17,7 +17,10 @@ public class MessageDispatcher extends ConnectionHandler {
                     "\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n");
         } catch (JMSException e) {
             System.out.println(e.getMessage());
-            if (onException()) send();
+            if (onException()) {
+                System.out.println("After 'onException': " + Runtime.getRuntime().freeMemory() + " bytes.");
+                send();
+            }
         }
     }
 }

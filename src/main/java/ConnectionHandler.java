@@ -57,8 +57,12 @@ public class ConnectionHandler {
     }
     protected static boolean onException() {
         try {
+            System.out.println("Before 'Thread::sleep(long l)': " + Runtime.getRuntime().freeMemory() + " bytes.");
             Thread.sleep(10000);
+            System.out.println("After 'Thread::sleep(long l)': " + Runtime.getRuntime().freeMemory() + " bytes.");
+            System.out.println("Before closing: " + Runtime.getRuntime().freeMemory() + " bytes.");
             stop();
+            System.out.println("After closing: " + Runtime.getRuntime().freeMemory() + " bytes.");
             return run();
         } catch (InterruptedException e) {
             System.out.println("The server is shut down.");

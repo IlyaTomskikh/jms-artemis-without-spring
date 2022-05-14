@@ -8,7 +8,10 @@ public class MessageReceiver extends ConnectionHandler {
             message = (TextMessage) messageConsumer.receive(1000);
         } catch (JMSException e) {
             System.out.println("Exceeded waiting time.\n" + e.getMessage());
-            if (onException()) receive();
+            if (onException()) {
+                System.out.println("After 'onException': " + Runtime.getRuntime().freeMemory() + " bytes.");
+                receive();
+            }
             else return;
         }
         try {
